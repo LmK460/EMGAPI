@@ -1,14 +1,25 @@
-import { useContext } from "react";
-import logo_light from "./assets/logo-light.svg";
-import logo_dark from "./assets/logo-dark.svg";
+import { useContext, useEffect, useState } from "react";
 
 import Charts from "./components/chart";
 import Switch from "./components/switch";
 import Table from "./components/table";
 import { Theme } from "./context/themeProvider";
 
+import logo_light from "./assets/logo-light.svg";
+import logo_dark from "./assets/logo-dark.svg";
+
 function App() {
   const { theme } = useContext(Theme);
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    (async function () {
+      fetch("http://localhost:8000/api/data")
+        .then((res) => res.json())
+        .then((res) => setData(res))
+        .catch(console.error);
+    })();
+  }, []);
 
   return (
     <div className="bg-background dark:bg-gray-900 w-full p-4">
@@ -21,8 +32,9 @@ function App() {
           )}
           <Switch />
         </header>
+
         {/* Gráficos */}
-        <Charts />
+        <Charts data={data} />
 
         {/* Tables */}
         <Table />
