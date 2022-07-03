@@ -1,6 +1,5 @@
 from urllib import response
 from fastapi import APIRouter
-import json
 import Data
 router = APIRouter()
 
@@ -13,4 +12,4 @@ def test():
 def getData():
     print("Retornado dados")
     print("Resposta")
-    return {json.dumps(Data.data())}
+    return Data.data()
