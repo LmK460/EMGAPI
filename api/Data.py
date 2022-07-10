@@ -1,12 +1,10 @@
-import random
 import numpy as np
-import matplotlib.pyplot as plt
 def getData():
     #atualizar a cada chamada na outra api  
     y,x= np.loadtxt('gait.txt',delimiter =',', usecols =(0, 1),unpack = True)
     return list(x),list(y)
 
-def FurrierTransform():
+def FourierTransform():
     #atualizar a cada chamada na outra api  
     x,y= getData()
     result = x,y

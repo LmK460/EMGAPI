@@ -16,11 +16,11 @@ def getOriginalData():
     return {"x":x,"y":y}
 
 
-@router.get('/furrier')
-def getFourrier():
+@router.get('/fourier')
+def getFourier():
     print("Retornado dados")
     print("Resposta")
-    x,y = Data.FurrierTransform()
+    x,y = Data.FourierTransform()
     return {"x":x,"y":y}
 
 @router.get('/wavelet')
