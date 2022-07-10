@@ -12,4 +12,21 @@ def test():
 def getData():
     print("Retornado dados")
     print("Resposta")
-    return Data.data()
+    x,y = getData()
+    return {"x":x,"y":y}
+
+
+@router.get('/furrier')
+def getData():
+    print("Retornado dados")
+    print("Resposta")
+    x,y = Data.FurrierTransform()
+    return {"x":x,"y":y}
+
+@router.get('/wavelet')
+def getData():
+    print("Retornado dados")
+    print("Resposta")
+    x,y =  Data.WaveletTrasnform()
+    return {"x":x,"y":y}
+    
