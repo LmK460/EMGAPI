@@ -9,22 +9,22 @@ def test():
 
 
 @router.get('/data')
-def getData():
+def getOriginalData():
     print("Retornado dados")
     print("Resposta")
-    x,y = getData()
+    x,y = Data.getData()
     return {"x":x,"y":y}
 
 
 @router.get('/furrier')
-def getData():
+def getFourrier():
     print("Retornado dados")
     print("Resposta")
     x,y = Data.FurrierTransform()
     return {"x":x,"y":y}
 
 @router.get('/wavelet')
-def getData():
+def getWavelet():
     print("Retornado dados")
     print("Resposta")
     x,y =  Data.WaveletTrasnform()
