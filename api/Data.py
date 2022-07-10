@@ -10,7 +10,7 @@ def FourierTransform():
     result = x,y
     return result
 
-def WaveletTrasnform():
+def WaveletTransform():
     #atualizar a cada chamada na outra api  
     x,y= getData()
     result = x,y

@@ -27,6 +27,6 @@ def getFourier():
 def getWavelet():
     print("Retornado dados")
     print("Resposta")
-    x,y =  Data.WaveletTrasnform()
+    x,y =  Data.WaveletTransform()
     return {"x":x,"y":y}
     
