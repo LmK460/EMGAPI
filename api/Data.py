@@ -1,19 +1,18 @@
-import random
 import numpy as np
-import matplotlib.pyplot as plt
+
 def getData():
     #atualizar a cada chamada na outra api  
     y,x= np.loadtxt('gait.txt',delimiter =',', usecols =(0, 1),unpack = True)
-    return list(x),list(y)
-
+    result = [{'x': x[i] , 'y': y[i]} for i in range(len(x))]
+    
+    return result
+    
 def FurrierTransform():
     #atualizar a cada chamada na outra api  
-    x,y= getData()
-    result = x,y
+    result = getData()
     return result
 
 def WaveletTrasnform():
     #atualizar a cada chamada na outra api  
-    x,y= getData()
-    result = x,y
+    result = getData()
     return result
