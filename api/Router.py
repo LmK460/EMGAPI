@@ -18,8 +18,8 @@ def getOriginalData():
     return res
 
 
-@router.get('/furrier')
-def getFourrier():
+@router.get('/fourier')
+def getFourier():
     print("Retornado dados")
     print("Resposta")
     #x,y = Data.FurrierTransform()

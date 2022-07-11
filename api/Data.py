@@ -12,7 +12,7 @@ def FurrierTransform():
     result = getData()
     return result
 
-def WaveletTrasnform():
+def WaveletTransform():
     #atualizar a cada chamada na outra api  
     result = getData()
     return result
