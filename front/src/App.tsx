@@ -7,17 +7,29 @@ import { Theme } from "./context/themeProvider";
 
 import logo_light from "./assets/logo-light.svg";
 import logo_dark from "./assets/logo-dark.svg";
+import Api from "./services/api";
 
 function App() {
   const { theme } = useContext(Theme);
-  const [data, setData] = useState<any[]>([]);
+  const [normal, setNormal] = useState([]);
+  const [fourier, setFourier] = useState([]);
+  const [wavelet, setWavelet] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async function () {
-      fetch("http://localhost:8000/api/data")
-        .then((res) => res.json())
-        .then((res) => setData(res))
-        .catch(console.error);
+      setLoading(true);
+      try {
+        const [normalData, fourierData, waveletData] = await Api.getAllData();
+        setNormal(normalData);
+        setFourier(fourierData);
+        setWavelet(waveletData);
+        
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
 
@@ -34,7 +46,10 @@ function App() {
         </header>
 
         {/* Gráficos */}
-        <Charts data={data} />
+        <Charts normalData={normal}
+          fourierData={fourier}
+          waveletData={wavelet}
+          />
 
         {/* Tables */}
         <Table />

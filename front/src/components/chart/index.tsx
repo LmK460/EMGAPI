@@ -3,32 +3,33 @@ import { Chart } from "react-google-charts";
 
 // example {time: 47, emg: 0.24142557595131242}
 
-interface ChartsProps {
-  data: Array<{
-    time: number;
-    emg: number;
-  }>;
-}
-
-const makeData = (
-  data: Array<{
-    time: number;
-    emg: number;
-  }>
-) => {
-  const newDataEmg: any = [["time", "emg"]];
-  const newDataTime: any = [["time", "time"]];
-
-  data.slice(1, 100).forEach((e, i) => {
-    newDataEmg.push([i, e.emg]);
-    newDataTime.push([i, Math.round(e.emg * 100)]);
-  });
-
-  return [newDataEmg, newDataTime];
+export type DataChart = {
+  x: number[];
+  y: number[];
 };
 
-export default function Charts({ data }: ChartsProps) {
-  const [newDataEmg, newDataTime] = useMemo(() => makeData(data), [data]);
+interface ChartsProps {
+  normalData: DataChart[];
+  fourierData: DataChart[];
+  waveletData: DataChart[];
+}
+
+const makeData = (data: DataChart[]) => {
+  const newData: any = [["time(ms)", "amplitude(mv)"]];
+  data.forEach((e) => {
+    newData.push([e.x, e.y]);
+  });
+  return newData;
+};
+
+export default function Charts({
+  normalData,
+  fourierData,
+  waveletData,
+}: ChartsProps) {
+  if (!normalData || !fourierData || !waveletData) return <></>;
+
+  const makeNormalData = makeData(normalData);
 
   return (
     <div className="my-4 w-full flex flex-col md:flex-row items-center justify-between gap-4">
@@ -40,7 +41,7 @@ export default function Charts({ data }: ChartsProps) {
           chartType="LineChart"
           width="100%"
           height="400px"
-          data={newDataEmg}
+          data={makeNormalData}
           options={{
             curveType: "function",
           }}
@@ -54,7 +55,7 @@ export default function Charts({ data }: ChartsProps) {
           chartType="LineChart"
           width="100%"
           height="400px"
-          data={newDataTime}
+          data={makeNormalData}
           options={{
             curveType: "function",
           }}

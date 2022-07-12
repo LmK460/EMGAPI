@@ -7,18 +7,24 @@ const api = axios.create({
 
 
 export default class Api {
- 	static async getNormalData(){
-		const res = await api.get('/data');
-		return res;
+	static async getNormalData(){
+		const {data} = await api.get('/data');
+		return data.slice(1,4000);
 	}
 
 	static async getFourierData(){
-		const res = await api.get('/furrier');
-		return res;
+		const {data} = await api.get('/fourier');
+		return data.slice(1,4000);
 	}
 
 	static async getWaveletData(){
-		const res = await api.get('/wavelet');
-		return res;
+		const  {data} = await api.get('/wavelet');
+		return data.slice(1,4000);
+	}
+
+	static async getAllData() {
+		const response = await Promise.all([this.getNormalData(), this.getFourierData(), this.getWaveletData()]);
+		console.log(([this.getNormalData(), this.getFourierData(), this.getWaveletData()]));
+		return response;
 	}
 }
