@@ -6,9 +6,9 @@ export type DataChart = {
 };
 
 interface ChartsProps {
-  normalData: DataChart[];
-  fourierData: DataChart[];
-  waveletData: DataChart[];
+  normalData: any;
+  fourierData: any;
+  waveletData: any;
 }
 
 const makeData = (data: DataChart[]) => {

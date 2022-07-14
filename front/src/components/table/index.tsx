@@ -17,7 +17,7 @@ export default function Table({
   paginate,
 }: Props) {
   const pageNumbers = [];
-  for (let i = 0; i <= Math.ceil(totalData / dataPerPage); i++) {
+  for (let i = 0; i <= Math.ceil(totalData / dataPerPage) - 1; i++) {
     pageNumbers.push(i + 1);
   }
 
@@ -75,7 +75,7 @@ export default function Table({
         </div>
       </div>
 
-      <ul className="flex items-center gap-2">
+      <ul className="flex items-center gap-2 flex-wrap">
         {pageNumbers.map((e, i) => {
           return (
             <li key={i}>

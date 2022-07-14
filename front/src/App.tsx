@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import { Theme } from "./context/themeProvider";
-import Charts from "./components/chart";
+import Charts, { DataChart } from "./components/chart";
 import Switch from "./components/switch";
 import Table from "./components/table";
 import Api from "./services/api";
@@ -9,23 +9,26 @@ import Api from "./services/api";
 import logo_light from "./assets/logo-light.svg";
 import logo_dark from "./assets/logo-dark.svg";
 
+import { dataApiMock } from "./mock";
+
 function App() {
   const { theme } = useContext(Theme);
-  const [normal, setNormal] = useState([]);
-  const [fourier, setFourier] = useState([]);
-  const [wavelet, setWavelet] = useState([]);
+  const [normal, setNormal] = useState(dataApiMock);
+  const [fourier, setFourier] = useState(dataApiMock);
+  const [wavelet, setWavelet] = useState(dataApiMock);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataPerPage, setDataPerPage] = useState(50);
+  const [dataPerPage, setDataPerPage] = useState(1000);
 
+  /*
   useEffect(() => {
     (async function () {
       setLoading(true);
       try {
         const [normalData, fourierData, waveletData] = await Api.getAllData();
-        setNormal(normalData);
-        setFourier(fourierData);
-        setWavelet(waveletData);
+        //setNormal(normalData);
+        //setFourier(fourierData);
+        //setWavelet(waveletData);
       } catch (e) {
         console.error(e);
       } finally {
@@ -33,6 +36,7 @@ function App() {
       }
     })();
   }, []);
+  */
 
   if (loading) return <h1>Loading...</h1>;
 

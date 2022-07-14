@@ -33,6 +33,6 @@ def getWavelet():
     print("Resposta")
     #x,y =  Data.WaveletTrasnform()
     #return {"x":x,"y":y}
-    res = Data.WaveletTrasnform()
+    res = Data.WaveletTransform()
     return res
     
